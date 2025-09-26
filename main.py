@@ -2,13 +2,12 @@ from character_base import*
 from setups import*
 from time import sleep
 from characters import*
-from saves import*
+from saving import*
 
 run = bool(True)
 menu = bool(True)
 battle = bool(True)
-
-player1 = Player(name="Joaquim", strenght=5, mind=5, agility=5, inteligence=5, luck=5, spirit=5)
+player1 = Player
 
 while run == True:
     while menu == True:
@@ -28,7 +27,11 @@ while run == True:
             battle = True
             menu = False
         elif choice == "2":
-            load(player1)
+            try:
+                load(player1)
+            except:
+                input("ERROR: There's no data saved, please create a new game.")
+                continue
             battle = True
             menu = False
         elif choice == "3":
@@ -37,7 +40,7 @@ while run == True:
             quit()
         else:
             print("Invalid input")
-
+    clear()
     while battle == True:
         line()
         character_menu(player1)
