@@ -1,7 +1,8 @@
-from character_base import *
-from setups import *
+from character_base import*
+from setups import*
 from time import sleep
-from characters import *
+from characters import*
+from saves import*
 
 run = bool(True)
 menu = bool(True)
@@ -11,20 +12,24 @@ while run == True:
     while menu == True:
         clear()
         print(20*"=", '''
->1 Play
->2 Options
->3 Quit
+>1 New game
+>2 Load game
+>3 Options
+>4 Quit
 ''', 
 20*"=")
         choice = str(input("> "))
         if choice == "1":
             name = str(input("Insert your name: \n>"))
             player1 = Player(name=name, strenght=5, mind=5, agility=5, inteligence=5, luck=5, spirit=5)
+            save(player1)
             battle = True
             menu = False
         elif choice == "2":
-            pass
+            load()
         elif choice == "3":
+            pass
+        elif choice == "4":
             quit()
         else:
             print("Invalid input")
