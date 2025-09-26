@@ -8,6 +8,8 @@ run = bool(True)
 menu = bool(True)
 battle = bool(True)
 
+player1 = Player(name="Joaquim", strenght=5, mind=5, agility=5, inteligence=5, luck=5, spirit=5)
+
 while run == True:
     while menu == True:
         clear()
@@ -26,7 +28,9 @@ while run == True:
             battle = True
             menu = False
         elif choice == "2":
-            load()
+            load(player1)
+            battle = True
+            menu = False
         elif choice == "3":
             pass
         elif choice == "4":
@@ -36,26 +40,28 @@ while run == True:
 
     while battle == True:
         line()
-        character_menu(haruki)
+        character_menu(player1)
         character_menu(loonie)
         line()
-        if haruki.current_hp == 0 or loonie.current_hp == 0:
+        if player1.current_hp == 0 or loonie.current_hp == 0:
             battle = False
             break   
-        print(f"{haruki.name}'s turn")
+        print(f"{player1.name}'s turn")
         print("""
     >1 Physical Attack
     >2 Magical attack
             """)
-        haruki.action(loonie)
-        sleep(5)
+        player1.action(loonie)
+        sleep(2)
         clear()
         line()
-        character_menu(haruki)
+        character_menu(player1)
         character_menu(loonie)
         line()
+        input("Enter to continue...")
         print(f"{loonie.name}'s turn")
-        loonie.action(haruki)
-        sleep(5)
+        sleep(2)
+        loonie.action(player1)
+        sleep(2)
         clear()
     run = False
