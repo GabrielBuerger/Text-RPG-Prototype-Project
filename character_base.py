@@ -1,4 +1,5 @@
 import random
+from map import *
 
 class Character:
     def __init__(self, 
@@ -83,14 +84,14 @@ class NPC(Character):
                 break
 
 class Player(Character):
-        def __init__(self, name, strenght, mind, agility, inteligence, luck, spirit):
+        def __init__(self, name, strenght, mind, agility, inteligence, luck, spirit, current_loc):
             super().__init__(name, strenght, mind, agility, inteligence, luck, spirit)
-            # self.current_loc = current_loc
-        # def move(self, current_location, direction):
-        #     print(str(map[current_location][direction]))
-        #     new_location = str(map[current_location][direction])
-        #     print(new_location)
-        #     self.current_loc = new_location
+            self.current_loc = current_loc
+        def move(self, current_location, direction):
+            print(str(map[current_location][direction]))
+            new_location = str(map[current_location][direction])
+            print(new_location)
+            self.current_loc = new_location
         def action(self, target=None):
             while True:
                 select = input(">")
