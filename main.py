@@ -8,6 +8,7 @@ from character_creation import *
 run = bool(True)
 menu = bool(True)
 battle = bool(True)
+player1 = Player
 
 current_loc = "Goldenrod town: Ramiel Hospital"
 
@@ -24,7 +25,7 @@ while run == True:
         choice = str(input("> "))
         if choice == "1":
             name, stenghth, mind, agility, inteligence, luck = character_creation()
-            player1 = Player(name, stenghth, mind, agility, inteligence, luck)
+            player1 = Player(name, stenghth, mind, agility, inteligence, luck, current_loc)
             save(player1)
             battle = True
             menu = False
@@ -44,28 +45,36 @@ while run == True:
             print("Invalid input")
     while True:
         clear()
-        dest = str(input(f'''
-        >0 Menu
-        >1 Go to
-        You are in {current_loc}
-        '''))
-        if dest == "0":
+        line()
+        print(f'''>0 Menu
+>1 Go to
+You are in {current_loc}''')
+        line()
+        choice = str(input("> "))
+        if choice == "0":
             menu = True
             play = False
             break
-        if dest == "1":
+        if choice == "1":
             c = int()
-            for i in map[current_loc]:
+            places = list()
+            for direction in map[current_loc]:
                 c += 1
-                print(f'>{c} {i}')
+                places.append(map[current_loc][direction])
+                print(f'>{c} {direction} ({places[c-1]})')
             while True:
-                direction = input(str("Please insert the direction: "))
-                if direction in map[current_loc]:
+                choice = input(str("Please insert the direction: > "))
+                if choice.isnumeric() == False:
+                    print("invalid comand")
+                elif int(choice) > c or int(choice) < 1:
+                    print("invalid comand")
+                elif places[int(choice)-1] in map:
+                    current_loc = str(places[int(choice)-1])
+                    print(current_loc)
+                    setattr(player1,"current_loc", current_loc)
                     break
                 else:
                     print("invalid comand")
-
-            player1.move(current_location=current_loc, direction=direction)
             clear()
     while battle == True:
         line()
