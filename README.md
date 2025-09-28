@@ -1,4 +1,4 @@
-# Txt-RPG
+# Prototype-RPG
 
 A small python game project for learning purposes, on the conclusion of this project I aime to achieve proficiency on git, project file management and object oriented programing.
 
