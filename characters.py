@@ -6,7 +6,6 @@ loonie = NPC(name="Loonie Hikashi",
                    agility="7",
                    inteligence='7',
                    luck='1',
-                   spirit='4'
                    )
 haruki = NPC(name="Haruki Hirasawa", 
                    strenght="2",
@@ -14,6 +13,5 @@ haruki = NPC(name="Haruki Hirasawa",
                    agility="7",
                    inteligence='5',
                    luck='7',
-                   spirit='7'
                    )
 

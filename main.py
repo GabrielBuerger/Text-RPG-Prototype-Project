@@ -3,11 +3,11 @@ from setups import*
 from time import sleep
 from characters import*
 from saving import*
+from character_creation import *
 
 run = bool(True)
 menu = bool(True)
 battle = bool(True)
-player1 = Player
 
 while run == True:
     while menu == True:
@@ -21,8 +21,8 @@ while run == True:
 20*"=")
         choice = str(input("> "))
         if choice == "1":
-            name = str(input("Insert your name: \n>"))
-            player1 = Player(name=name, strenght=5, mind=5, agility=5, inteligence=5, luck=5, spirit=5)
+            name, stenghth, mind, agility, inteligence, luck = character_creation()
+            player1 = Player(name, stenghth, mind, agility, inteligence, luck)
             save(player1)
             battle = True
             menu = False
@@ -30,7 +30,7 @@ while run == True:
             try:
                 load(player1)
             except:
-                input("ERROR: There's no data saved, please create a new game.")
+                input("ERROR: There's no data saved, please create a new game.\n\n>")
                 continue
             battle = True
             menu = False

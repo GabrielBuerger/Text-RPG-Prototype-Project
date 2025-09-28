@@ -7,8 +7,7 @@ class Character:
                 mind:int,
                 agility:int,
                 inteligence:int,
-                luck:int,
-                spirit:int,
+                luck:int
                 ) -> None:
         #main setups
         self.name = name
@@ -21,7 +20,6 @@ class Character:
         self.agility = agility
         self.inteligence = inteligence
         self.luck = luck
-        self.spirit = spirit
         #strenght stats
         self.max_hp = int(10 + int(self.strenght)*5)
         self.current_hp = int(self.max_hp)
@@ -65,8 +63,8 @@ class Character:
     # def equip(self, equipment):
 
 class NPC(Character):
-    def __init__(self, name, strenght, mind, agility, inteligence, luck, spirit):
-        super().__init__(name, strenght, mind, agility, inteligence, luck, spirit)
+    def __init__(self, name, strenght, mind, agility, inteligence, luck):
+        super().__init__(name, strenght, mind, agility, inteligence, luck)
     def action(self,target):
         while True:
             select = str(random.randint(1,2))
@@ -83,8 +81,8 @@ class NPC(Character):
                 break
 
 class Player(Character):
-        def __init__(self, name, strenght, mind, agility, inteligence, luck, spirit):
-            super().__init__(name, strenght, mind, agility, inteligence, luck, spirit)
+        def __init__(self, name, strenght, mind, agility, inteligence, luck):
+            super().__init__(name, strenght, mind, agility, inteligence, luck)
             # self.current_loc = current_loc
         # def move(self, current_location, direction):
         #     print(str(map[current_location][direction]))
