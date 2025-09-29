@@ -1,13 +1,13 @@
-from player_subclass import Player
+from player import Player
 from character_creation import character_creation
 from settings import *
-from time import sleep
+from battle import battle
 from characters import *
 from saving import *
 
 run = bool(True)
 menu = bool(True)
-battle = bool(True)
+play = bool(True)
 player1 = Player
 
 current_loc = "Goldenrod town: Ramiel Hospital"
@@ -27,7 +27,6 @@ while run == True:
             name, stenghth, mind, agility, inteligence, luck = character_creation()
             player1 = Player(name, stenghth, mind, agility, inteligence, luck, current_loc)
             save(player1)
-            battle = True
             menu = False
         elif choice == "2":
             try:
@@ -35,7 +34,6 @@ while run == True:
             except:
                 input("ERROR: There's no data saved, please create a new game.\n\n>")
                 continue
-            battle = True
             menu = False
         elif choice == "3":
             pass
@@ -43,13 +41,18 @@ while run == True:
             quit()
         else:
             print("Invalid input")
-    while True:
+    while play:
+        if current_loc == loonie.current_loc:
+            battle(player1, loonie)
+        if current_loc == haruki.current_loc:
+            battle(player1, haruki)
         clear()
         line()
         character_menu(player1)
         print(f'''You are in {player1.current_loc}
 >0 Menu
->1 Go to''')
+>1 Go somewhere''')
+        print(current_loc)
         line()
         choice = str(input("> "))
         if choice == "0":
@@ -57,31 +60,5 @@ while run == True:
             play = False
             break
         elif choice == "1":
-            player1.move(current_location=player1.current_loc)
-    while battle == True:
-        line()
-        character_menu(player1)
-        character_menu(loonie)
-        line()
-        if player1.current_hp == 0 or loonie.current_hp == 0:
-            battle = False
-            break   
-        print(f"{player1.name}'s turn")
-        print("""
->1 Physical Attack
->2 Magical attack
-            """)
-        player1.action(loonie)
-        sleep(2)
-        clear()
-        line()
-        character_menu(player1)
-        character_menu(loonie)
-        line()
-        input("Enter to continue...")
-        print(f"{loonie.name}'s turn")
-        sleep(2)
-        loonie.action(player1)
-        sleep(2)
-        clear()
-    run = False
+            player1.move(current_location=current_loc)
+            current_loc = player1.current_loc

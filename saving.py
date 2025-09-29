@@ -1,4 +1,4 @@
-from player_subclass import Player
+from player import Player
 
 def save(player=Player):
     # file=open("load.txt", "a")

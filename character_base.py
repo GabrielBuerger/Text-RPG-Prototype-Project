@@ -39,7 +39,8 @@ class Character:
         self.magic_damage = int(self.inteligence)
         self.max_mana = int(self.inteligence)*5
         self.mana = int(self.max_mana)
-    def physical_attack(self, target:str) -> None:
+    def physical_attack(self, target) -> None:
+        target = Character
         self.damage = int(self.strenght)
         dodge = int(random.randint(0,100))
         critical = int(random.randint(0,100))
@@ -53,7 +54,8 @@ class Character:
             self.damage = self.damage*2       
         target.current_hp -= self.damage
         target.current_hp = max(target.current_hp, 0)
-    def magic_attack(self, target):
+    def magic_attack(self, target) -> None:
+        target = Character
         self.mana -= 8
         self.mana = max(self.mana, 0)
         # dodge = int(random.randint(0,100))

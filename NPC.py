@@ -1,4 +1,4 @@
-from character_class import Character
+from character_base import Character
 from random import random
 
 class NPC(Character):

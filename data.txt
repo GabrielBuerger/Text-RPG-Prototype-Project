@@ -1,5 +1,7 @@
 name
 Gabriel
+current_loc
+Goldenrod town: Ramiel Hospital
 money
 0
 alive
@@ -7,21 +9,21 @@ True
 status
 True
 strenght
-4
+5
 mind
 1
 agility
-5
-inteligence
 8
+inteligence
+5
 luck
-2
+1
 max_hp
-30
+35
 current_hp
-30
+35
 damage
-6
+7
 max_lunacy
 6
 lunacy
@@ -29,14 +31,12 @@ lunacy
 lunacy_resist
 2
 critical
-10
+16
 dodge
-10
+16
 magic_damage
-8
+5
 max_mana
-40
+25
 mana
-40
-current_loc
-Goldenrod town: Ramiel Hospital
+25
