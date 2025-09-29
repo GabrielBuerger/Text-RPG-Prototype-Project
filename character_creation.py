@@ -1,4 +1,4 @@
-from setups import *
+from settings import clear, line
 
 def character_creation():
     name = str(input("Insert your name: \n> "))

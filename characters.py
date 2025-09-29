@@ -1,4 +1,4 @@
-from character_base import NPC
+from NPC_subclass import NPC
 
 loonie = NPC(name="Loonie Hikashi",
                    strenght="4",

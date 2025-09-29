@@ -1,9 +1,9 @@
-from character_base import*
-from setups import*
+from player_subclass import Player
+from character_creation import character_creation
+from settings import *
 from time import sleep
-from characters import*
-from saving import*
-from character_creation import *
+from characters import *
+from saving import *
 
 run = bool(True)
 menu = bool(True)

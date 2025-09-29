@@ -6,7 +6,8 @@ map = {
     "The Tiger Throat Dungeon":{"west":"The Giant mushroom forest"},
     "The Giant mushroom forest":{"east":"Goldenrod town: Downtown",
                                  "west":"The Tiger Throat Dungeon"},
-    "Mt.Silver":{"east":"Goldenrod town: Downtown"}
+    "Mt.Silver":{"east":"Goldenrod town: Downtown"},
+    "Void":{"nowhere":"Void"}
 }
 
 
