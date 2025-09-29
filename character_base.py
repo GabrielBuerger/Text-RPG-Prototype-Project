@@ -1,5 +1,6 @@
 import random
 from map import *
+from setups import *
 
 class Character:
     def __init__(self, 
@@ -101,3 +102,26 @@ class Player(Character):
                     break
                 else:
                     print("Invalid input. Please, insert again.")
+        def move(current_location:Character.current_loc):
+            self = Player
+            c = int()
+            places = list()
+            for direction in map[current_location]:
+                c += 1
+                places.append(map[current_location][direction])
+                print(f'>{c} {direction} ({places[c-1]})')
+            while True:
+                choice = input(str("Please insert the direction: > "))
+                if choice.isnumeric() == False:
+                    print("invalid comand")
+                elif int(choice) > c or int(choice) < 1:
+                    print("invalid comand")
+                elif places[int(choice)-1] in map:
+                    new_location = str(places[int(choice)-1])
+                    current_location = new_location
+                    setattr(self,"current_loc", current_location)
+                    break
+                else:
+                    print("invalid comand")
+            clear()
+            return current_location
