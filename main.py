@@ -1,14 +1,14 @@
 from player import Player
+from characters import *
 from character_creation import character_creation
 from settings import *
 from battle import battle
-from characters import *
 from saving import *
 
 run = bool(True)
 menu = bool(True)
 play = bool(True)
-player1 = Player
+player1 = None
 
 current_loc = "Goldenrod town: Ramiel Hospital"
 
@@ -38,6 +38,7 @@ while run == True:
         elif choice == "3":
             pass
         elif choice == "4":
+            run = False
             quit()
         else:
             print("Invalid input")

@@ -1,4 +1,4 @@
-from random import random
+from random import randint
 
 class Character:
     def __init__(self, 
@@ -9,7 +9,7 @@ class Character:
                 inteligence:int,
                 luck:int,
                 current_loc:str="Void"
-                ) -> None:
+                ):
         #main setups
         self.name = name
         self.current_loc = current_loc
@@ -36,32 +36,29 @@ class Character:
         self.critical = int(self.agility)*2
         self.dodge = int(self.agility)*2
         #inteligence stats
-        self.magic_damage = int(self.inteligence)
+        self.magical_damage = int(self.inteligence)
         self.max_mana = int(self.inteligence)*5
         self.mana = int(self.max_mana)
-    def physical_attack(self, target) -> None:
-        target = Character
+    def physical_attack(self:'Character', target:'Character'):
         self.damage = int(self.strenght)
-        dodge = int(random.randint(0,100))
-        critical = int(random.randint(0,100))
+        dodge = int(randint(0,100))
+        critical = int(randint(0,100))
         if dodge <= self.dodge:
             self.damage = self.damage*0
             print(f"{target.name} avoided the attack!")
             critical = 100
-        # print(critical_value, "/", self.critical_chance, "%")
         if critical <= self.critical:
             print(f"{self.name} gave critical damage!")
             self.damage = self.damage*2       
         target.current_hp -= self.damage
         target.current_hp = max(target.current_hp, 0)
-    def magic_attack(self, target) -> None:
-        target = Character
+    def magic_attack(self:'Character', target:'Character'):
         self.mana -= 8
         self.mana = max(self.mana, 0)
         # dodge = int(random.randint(0,100))
         # if dodge <= self.dodge:
         #     self.damage = self.damage*0
         #     print(f"{target.name} avoided the attack!")
-        target.current_hp -= self.magic_damage
+        target.current_hp -= self.magical_damage
         target.current_hp = max(target.current_hp, 0)
     # def equip(self, equipment):

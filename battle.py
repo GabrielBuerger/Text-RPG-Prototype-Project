@@ -10,11 +10,11 @@ def battle(character1:Player, character2:NPC):
         character_menu(character2)
         line()
         if character1.current_hp == 0:
-            print(f"{character1} is defeated.")
-            return character1.current_hp(0)
+            print(f"{character1.name} is defeated.")
+            return
         elif character2.current_hp == 0:
-            print(f"{character2} is defeated.")
-            return character2.current_hp(0)
+            print(f"{character2.name} is defeated.")
+            return
         print(f"{character1.name}'s turn")
         print("""
 >1 Physical Attack
