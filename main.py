@@ -52,7 +52,8 @@ while run == True:
         character_menu(player1)
         print(f'''You are in {player1.current_loc}
 >0 Menu
->1 Go somewhere''')
+>1 Go somewhere
+>2 Check inventory''')
         print(current_loc)
         line()
         choice = str(input("> "))
@@ -64,3 +65,7 @@ while run == True:
             player1.move(current_location=current_loc)
             current_loc = player1.current_loc
             clear()
+        elif choice == "2":
+            player1.add_inventory("potion")
+            player1.check_inventory()
+            input()

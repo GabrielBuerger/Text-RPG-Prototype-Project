@@ -12,9 +12,9 @@ def save(player=Player):
 
 def load(player:Player):
     arc = str("data.txt")
-    with open(arc, "r") as f:
+    with open(arc, "r") as file:
         lines = list()
-        for line in f.readlines():
+        for line in file.readlines():
            lines.append(line.strip("\n"))
     for i in range(0, len(lines), 2):
         key = str(lines[i])

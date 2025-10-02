@@ -3,7 +3,7 @@ from settings import clear, line
 def character_creation():
     name = str(input("Insert your name: \n> "))
     str_pts = mind_pts = agi_pts = int_pts = luc_pts = int(1)
-    init_maxpts = int(1)
+    init_maxpts = int(10)
     max_pts = int(init_maxpts)
     while True:
         clear()
