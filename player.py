@@ -1,9 +1,8 @@
 from character_base import Character
 from map import map
-from settings import clear
 
 class Player(Character):
-    def __init__(self, name, strenght, mind, agility, inteligence, luck, current_loc:str="Void"):
+    def __init__(self, name='Unk', strenght='0', mind='0', agility='0', inteligence='0', luck='0', current_loc:str="Void"):
         super().__init__(name, strenght, mind, agility, inteligence, luck, current_loc)
     def action(self, target=None):
         while True:
@@ -21,9 +20,7 @@ class Player(Character):
                 break
             else:
                 print("Invalid input. Please, insert again.")
-    def move(current_location):
-        self = Player
-        current_location = getattr(self, "current_loc")
+    def move(self, current_location):
         c = int()
         places = list()
         for direction in map[current_location]:
@@ -42,5 +39,4 @@ class Player(Character):
                 break
             else:
                 print("invalid comand")
-        clear()
         return new_location

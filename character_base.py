@@ -8,7 +8,7 @@ class Character:
                 agility:int,
                 inteligence:int,
                 luck:int,
-                current_loc:str="Void"
+                current_loc:str
                 ):
         #main setups
         self.name = name

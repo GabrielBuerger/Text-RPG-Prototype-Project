@@ -8,7 +8,7 @@ from saving import *
 run = bool(True)
 menu = bool(True)
 play = bool(True)
-player1 = None
+player1 = Player()
 
 current_loc = "Goldenrod town: Ramiel Hospital"
 
@@ -63,3 +63,4 @@ while run == True:
         elif choice == "1":
             player1.move(current_location=current_loc)
             current_loc = player1.current_loc
+            clear()

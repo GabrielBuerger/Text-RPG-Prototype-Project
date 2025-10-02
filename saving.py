@@ -2,48 +2,32 @@ from player import Player
 
 def save(player=Player):
     # file=open("load.txt", "a")
-    saving = list()
+    saving = dict()
     arc = str("data.txt")
     with open(arc, "w") as file:
-        for attribute, value in player.__dict__.items():
-            saving.append(str(attribute))
-            saving.append(str(value))
-        for item in saving:
-            file.write(item + "\n")
+        for attr, val in player.__dict__.items():
+            saving[attr] = str(val)
+            file.write(str((attr)+'\n'+str((val))+'\n'))
     # file.close()
 
-def load(player=Player):
-    attr = list()
-    vals = list()
-    c = int(0)
+def load(player:Player):
     arc = str("data.txt")
-    with open(arc, "r") as file:
-        for line in file:
-            c += 1
-            #odd nums = objects atributes
-            if float(c % 2 != 0):
-                attr.append(line.strip("\n"))
-            #even nums = atribute values
-            else:
-                vals.append(line.strip("\n"))
-                if vals[-1].isnumeric() == True:
-                    vals[-1] = int(vals[-1])
-                setattr(player, attr[-1], vals[-1])
+    with open(arc, "r") as f:
+        lines = list()
+        for line in f.readlines():
+           lines.append(line.strip("\n"))
+    for i in range(0, len(lines), 2):
+        key = str(lines[i])
+        value = str(lines[i+1])
+        if value.isnumeric():
+            value = int(value)
+        setattr(player, str(key), value)
 
 # saving.py (CHAT GPT solution ongoing studies...)
 
 # from player import Player
 
-# def load():
-#     with open("data.txt", "r") as f:
-#         lines = [line.strip() for line in f.readlines()]
 
-#     # Turn into dict (pairs of key/value)
-#     save_data = {}
-#     for i in range(0, len(lines), 2):
-#         key = lines[i]
-#         value = lines[i+1]
-#         save_data[key] = value
 
 #     # Create a new Player instance from saved stats
 #     player = Player(

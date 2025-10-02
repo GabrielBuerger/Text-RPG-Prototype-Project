@@ -3,7 +3,8 @@ from settings import clear, line
 def character_creation():
     name = str(input("Insert your name: \n> "))
     str_pts = mind_pts = agi_pts = int_pts = luc_pts = int(1)
-    max_pts = int(15)
+    init_maxpts = int(1)
+    max_pts = int(init_maxpts)
     while True:
         clear()
         line()
@@ -24,7 +25,7 @@ def character_creation():
                 break
             elif choice == "2":
                 str_pts = mind_pts = agi_pts = int_pts = luc_pts = int(1)
-                max_pts = int(15)
+                max_pts = int(init_maxpts)
                 continue
             else:
                 input("Invalid input ")
