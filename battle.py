@@ -17,8 +17,10 @@ def battle(character1:Player, character2:NPC):
             return
         print(f"{character1.name}'s turn")
         print("""
->1 Physical Attack
->2 Magical attack
+>1 Basic attack
+>2 Defend
+>3 Atack skills
+>4 special skills
             """)
         character1.action(character2)
         sleep(2)

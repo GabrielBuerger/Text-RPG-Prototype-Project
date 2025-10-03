@@ -8,7 +8,7 @@ class Player(Character):
         while True:
             select = input(">")
             if select == "1":
-                self.physical_attack(target)
+                self.basic_attack(target)
                 print(f"{target.name} taked {self.damage} damage")
                 break
             elif select == "2" and self.mana < 8:

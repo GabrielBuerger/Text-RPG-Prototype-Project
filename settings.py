@@ -1,6 +1,10 @@
 import os
 from player import Player
 
+# class array():
+#     def __init__(self, *args):
+#         array = list()
+
 def clear():
     os.system("cls")
 

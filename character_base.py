@@ -10,12 +10,14 @@ class Character:
                 luck:int,
                 current_loc:str
                 ):
-        #main setups
+        #main setup
         self.name = name
         self.current_loc = current_loc
         self.money = int(0)
         self.alive = bool(True)
         self.status = bool(True)
+        self.attack_moves = list()
+        self.status_moves = list()
         #basic stats
         self.strenght = strenght
         self.mind = mind
@@ -39,7 +41,7 @@ class Character:
         self.magical_damage = int(self.inteligence)
         self.max_mana = int(self.inteligence)*5
         self.mana = int(self.max_mana)
-    def physical_attack(self:'Character', target:'Character'):
+    def basic_attack(self:'Character', target:'Character'):
         self.damage = int(self.strenght)
         dodge = int(randint(0,100))
         critical = int(randint(0,100))

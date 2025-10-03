@@ -1,0 +1,37 @@
+Compound Data Structures
+│
+├── Ordered (sequence-like)
+│   ├── Fixed-size
+│   │   ├── Array (C, Java, NumPy, JS TypedArray)
+│   │   └── Tuple (Python)
+│   └── Dynamic-size
+│       ├── List (Python)
+│       ├── Vector (C++ STL, Java Vector/ArrayList)
+│       └── Array (JS normal array, Java ArrayList)
+│
+├── Unordered (collection-like)
+│   ├── Set (Python set, Java HashSet, C++ std::set, JS Set)
+│   └── Map / Dictionary
+│       ├── Dict (Python)
+│       ├── HashMap (Java), std::map (C++)
+│       └── Object/Map (JavaScript)
+│
+└── Specialized
+    ├── Queue / Stack (collections.deque in Python, Queue in Java, std::queue in C++)
+    ├── Linked Lists (manual in C, LinkedList in Java, JS libraries)
+    ├── Trees, Graphs, etc. (built manually or with libraries)
+
+
+Array → fixed-size, contiguous.
+
+List → dynamic sequence.
+
+Tuple → fixed, immutable sequence.
+
+Vector → dynamic array with resizing (Java, C++).
+
+Dictionary/Map → key-value pairs.
+
+Set → unique unordered values.
+
+Specialized → queues, stacks, linked lists, trees, graphs.

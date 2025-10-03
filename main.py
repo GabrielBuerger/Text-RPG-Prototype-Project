@@ -64,3 +64,6 @@ while run == True:
             player1.move(current_location=current_loc)
             current_loc = player1.current_loc
             clear()
+        elif choice == "2":
+            player1.check_inventory()
+            input()
