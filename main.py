@@ -4,6 +4,7 @@ from character_creation import character_creation
 from settings import *
 from battle import battle
 from saving import *
+from status import bleed
 
 run = bool(True)
 menu = bool(True)

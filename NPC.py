@@ -4,8 +4,8 @@ from random import randint
 class NPC(Character):
     def __init__(self, name, strenght, mind, agility, inteligence, luck, current_loc:str="Void"):
         super().__init__(name, strenght, mind, agility, inteligence, luck, current_loc)
-    def action(self,target):
-        while True:
+    def turn(self, target:Character=None, actions:int=1):
+        while actions != 0:
             select = str(randint(1,2))
             if select == "1":
                 self.basic_attack(target)

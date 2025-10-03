@@ -15,7 +15,7 @@ class Character:
         self.current_loc = current_loc
         self.money = int(0)
         self.alive = bool(True)
-        self.status = bool(True)
+        self.status = list()
         self.attack_moves = list()
         self.status_moves = list()
         #basic stats
@@ -25,7 +25,7 @@ class Character:
         self.inteligence = inteligence
         self.luck = luck
         #strenght stats
-        self.max_hp = int(10 + int(self.strenght)*5)
+        self.max_hp = int(100 + int(self.strenght)*100)
         self.current_hp = int(self.max_hp)
         self.damage = int(2+int(self.strenght))
         if self.current_hp == 0:
@@ -57,10 +57,12 @@ class Character:
     def magic_attack(self:'Character', target:'Character'):
         self.mana -= 8
         self.mana = max(self.mana, 0)
-        # dodge = int(random.randint(0,100))
-        # if dodge <= self.dodge:
-        #     self.damage = self.damage*0
-        #     print(f"{target.name} avoided the attack!")
         target.current_hp -= self.magical_damage
         target.current_hp = max(target.current_hp, 0)
     # def equip(self, equipment):
+    def set_status(self, effect, duration:int):
+        self.status[effect] = duration
+        print(f'{self.name} is now affected by {effect.__name__}')
+    def process_status(self):
+        for effect in self.status:
+            
