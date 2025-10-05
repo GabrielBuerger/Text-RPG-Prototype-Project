@@ -2,14 +2,14 @@ from player import Player
 from characters import *
 from character_creation import character_creation
 from settings import *
-from battle import battle
+from battle import Team, Battle
 from saving import *
-from status import bleed
 
 run = bool(True)
 menu = bool(True)
 play = bool(True)
 player1 = Player()
+party = Team(player1)
 
 current_loc = "Goldenrod town: Ramiel Hospital"
 
@@ -45,9 +45,9 @@ while run == True:
             print("Invalid input")
     while play:
         if current_loc == loonie.current_loc:
-            battle(player1, loonie)
+            Battle((player1), (loonie))
         if current_loc == haruki.current_loc:
-            battle(player1, haruki)
+            Battle(player1, haruki)
         clear()
         line()
         character_menu(player1)

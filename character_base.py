@@ -16,6 +16,7 @@ class Character:
         self.money = int(0)
         self.alive = bool(True)
         self.status = list()
+        self.actions = int()
         self.attack_moves = list()
         self.status_moves = list()
         #basic stats
@@ -29,7 +30,7 @@ class Character:
         self.current_hp = int(self.max_hp)
         self.damage = int(2+int(self.strenght))
         if self.current_hp == 0:
-            self.alive = False
+            self.alive = bool(False)
         #mind stats
         self.max_lunacy = int(self.mind)*6
         self.lunacy = int(self.max_lunacy)
@@ -59,10 +60,23 @@ class Character:
         self.mana = max(self.mana, 0)
         target.current_hp -= self.magical_damage
         target.current_hp = max(target.current_hp, 0)
+    def action(self:'Character', target:'Character'):
+        print("""
+>1 Basic attack
+>2 Defend
+>3 Atack skills
+>4 special skills""")
+        select = input("\n>")
+        if select == "1":
+            self.basic_attack(target)
+            print(f"{target.name} taked {self.damage} damage")
+        elif select == "2" and self.mana < 8:
+            print("You've run out of mana, you can't perform a magical attack")
+        elif select == "2":
+            self.magic_attack(target)
+            print(f"{target.name} taked {self.magical_damage} from magical damage")
+            print(f"Mana:[{self.max_mana}/{self.mana}]")
+        else:
+            print("Invalid input. Please, insert again.")
     # def equip(self, equipment):
-    def set_status(self, effect, duration:int):
-        self.status[effect] = duration
-        print(f'{self.name} is now affected by {effect.__name__}')
-    def process_status(self):
-        for effect in self.status:
-            
+         

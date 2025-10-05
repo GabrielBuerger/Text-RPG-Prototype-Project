@@ -1,37 +1,70 @@
+Computation
+    The Theoretical Core: Control + State
+    Control: conditionals and looping
+    State: data (variables)
+
+    programming paradigmas
+        low-level:
+            imperative (assembly): machine language
+        mid-level:
+            procedural (C, Pascal): list of actions, the base of everything is memory
+        high-level:
+            OOP (Smalltalk, C++, Java, Python): uses a second layer unifing data with functions
+            OOP prototype (JavaScript): has objects but no classes, just objects cloning another ones via prototype chain
+            functional (Lisp, Haskell, modern JS): list as matematical formulas
+            declarative/reactive (SQL, HTML, React, Prolog): states goals, no matter the proccess
+
 Compound Data Structures
-│
-├── Ordered (sequence-like)
-│   ├── Fixed-size
-│   │   ├── Array (C, Java, NumPy, JS TypedArray)
-│   │   └── Tuple (Python)
-│   └── Dynamic-size
-│       ├── List (Python)
-│       ├── Vector (C++ STL, Java Vector/ArrayList)
-│       └── Array (JS normal array, Java ArrayList)
-│
-├── Unordered (collection-like)
-│   ├── Set (Python set, Java HashSet, C++ std::set, JS Set)
-│   └── Map / Dictionary
-│       ├── Dict (Python)
-│       ├── HashMap (Java), std::map (C++)
-│       └── Object/Map (JavaScript)
-│
-└── Specialized
-    ├── Queue / Stack (collections.deque in Python, Queue in Java, std::queue in C++)
-    ├── Linked Lists (manual in C, LinkedList in Java, JS libraries)
-    ├── Trees, Graphs, etc. (built manually or with libraries)
+    │
+    ├── Ordered (sequence-like)
+    │   ├── Fixed-size
+    │   │   ├── Dynamic values:
+    |   |   |   Array (C, Java, NumPy, JS TypedArray)
+    │   │   └── Fixed values:
+    |   |       Tuple (Python) 
+    │   └── Dynamic-size
+    │       ├── List (Python) 
+    │       ├── Vector (C++ STL, Java Vector/ArrayList)
+    │       └── Array (JS normal array, Java ArrayList)
+    │
+    ├── Unordered (collection-like)
+    │   ├── Set (Python set, Java HashSet, C++ std::set, JS Set)
+    │   └── Map / Dictionary
+    │       ├── Dict (Python)
+    │       ├── HashMap (Java), std::map (C++)
+    │       └── Object/Map (JavaScript)
+    │
+    └── Specialized
+        ├── Queue / Stack (collections.deque in Python, Queue in Java, std::queue in C++)
+        ├── Linked Lists (manual in C, LinkedList in Java, JS libraries)
+        ├── Trees, Graphs, etc. (built manually or with libraries)
 
+Object oriented programing morphosyntatics
+    The objects:
+        SVO -> subject.verb(Object) / Object.Method(parameters)
 
-Array → fixed-size, contiguous.
+        predicate/method(object's function)
+            verb/method: intransitive(no objects/parameters) or transitive(one object/one or multiple parameters)
+        
+        subject/object
+            adverbial adjunct: object.atribute(object's variable) / subject.adjective
 
-List → dynamic sequence.
+    The classes:
+        Inheritance = Taxonomic Hierarchy
 
-Tuple → fixed, immutable sequence.
+        Noun <- lexicon = object <- class
+        
+        super(): inheritate the atributes(adjectives) and the methods(verbs)
+    
+    The root of everything:
+        "type" class: class that create classes (that created itself)
+        "object" class: provide all dunder methods(methods applied to objects, especifically)
+    
+    Use object or function? (as semantics)
+        Object: act upon anothero object
+        Function: is a blackground setting for object, where things happens
 
-Vector → dynamic array with resizing (Java, C++).
+functions
+    def function (parameter:prime_type | second_primetype_option = default value, 
+                  parameter:list[prime_type])
 
-Dictionary/Map → key-value pairs.
-
-Set → unique unordered values.
-
-Specialized → queues, stacks, linked lists, trees, graphs.

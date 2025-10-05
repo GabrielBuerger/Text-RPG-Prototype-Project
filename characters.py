@@ -16,4 +16,3 @@ haruki = NPC(name="Haruki Hirasawa",
                    luck='7',
                    current_loc="The Giant mushroom forest"
                    )
-
