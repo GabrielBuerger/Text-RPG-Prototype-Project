@@ -1,5 +1,5 @@
 import os
-from player import Player
+from character_base import Character
 
 # class array():
 #     def __init__(self, *args):
@@ -8,8 +8,8 @@ from player import Player
 def clear():
     os.system("cls")
 
-def character_menu(name:'Player'):
-    print(f"{name.name} HP:[{name.max_hp}/{name.current_hp}] Mana:[{name.max_mana}/{name.mana}]")
-
+def character_menu(character:'Character'):
+    print(f"{character.name} HP:[{character.max_hp}/{character.current_hp}] Mana:[{character.max_mana}/{character.mana}]")
+    print('Status:', character.status)
 def line(line:str="-", size:int=20):
     print(line*size)

@@ -1,4 +1,5 @@
 from random import randint
+from typing import Callable
 
 class Character:
     def __init__(self, 
@@ -10,38 +11,56 @@ class Character:
                 luck:int,
                 current_loc:str
                 ):
-        #main setup
+#main stats
         self.name = name
         self.current_loc = current_loc
         self.money = int(0)
         self.alive = bool(True)
-        self.status = list()
         self.actions = int()
         self.attack_moves = list()
         self.status_moves = list()
-        #basic stats
+#basic stats
         self.strenght = strenght
         self.mind = mind
         self.agility = agility
         self.inteligence = inteligence
         self.luck = luck
-        #strenght stats
-        self.max_hp = int(100 + int(self.strenght)*100)
+#strenght stats
+        self.max_hp = int(10 + int(self.strenght)*10)
         self.current_hp = int(self.max_hp)
         self.damage = int(2+int(self.strenght))
         if self.current_hp == 0:
             self.alive = bool(False)
-        #mind stats
+#mind stats
         self.max_lunacy = int(self.mind)*6
         self.lunacy = int(self.max_lunacy)
         self.lunacy_resist = int(self.mind)*2
-        #agility stats
+#agility stats
         self.critical = int(self.agility)*2
         self.dodge = int(self.agility)*2
-        #inteligence stats
+#inteligence stats
         self.magical_damage = int(self.inteligence)
         self.max_mana = int(self.inteligence)*5
         self.mana = int(self.max_mana)
+#status:
+        self.status = dict()
+        self.status = {
+            'bleed':0,
+            'frozen':0
+        }
+    def set_status(self, effect:str, duration:int, round:bool=True):
+        self.status = dict()
+        self.status[effect] = duration
+    def round_status(self):
+        if self.status['bleed'] > 0:
+            bleeding = int(float(self.max_hp)/50)
+            self.current_hp -= bleeding
+            print(f'{self.name} loses {bleeding}HP by bleeding for {self.status['bleed']} rounds.')
+            self.status['bleed'] -= 1
+    def turn_satus(self):
+        if self.status['frozen'] > 0:
+            self.actions = 0
+#basic actions
     def basic_attack(self:'Character', target:'Character'):
         self.damage = int(self.strenght)
         dodge = int(randint(0,100))
@@ -79,4 +98,3 @@ class Character:
         else:
             print("Invalid input. Please, insert again.")
     # def equip(self, equipment):
-         

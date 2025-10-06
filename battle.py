@@ -25,7 +25,6 @@ def turn(party:Character, enemies:Character):
     if party.actions > 1:
         print('Quick feet! You have one more action.')
         party.action(enemies)
-        clear()
     input()
     clear()
 
@@ -38,6 +37,7 @@ def round(party:Character, enemies:Character):
             turn(turn_order[character_turn], enemies)
         elif turn_order[character_turn] == enemies:
             turn(turn_order[character_turn], party)
+    party.round_status()
 
 def Battle (party:Character, enemies:Character):
     battle = bool(True)

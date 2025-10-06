@@ -45,6 +45,7 @@ while run == True:
             print("Invalid input")
     while play:
         if current_loc == loonie.current_loc:
+            player1.set_status('bleed',3)
             Battle((player1), (loonie))
         if current_loc == haruki.current_loc:
             Battle(player1, haruki)
