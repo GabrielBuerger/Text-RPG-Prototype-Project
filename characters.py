@@ -1,6 +1,30 @@
+from character_base import Character
+from species import *
 from NPC import NPC
+from affiliations import *
 
-loonie = NPC(name="Loonie Hikashi",
+class Loonie(NPC, Fox, The_Fox, The_Moon):
+    def __init__(self):
+        pass
+    def chosen_by_the_moon():
+        pass
+    def bastard_son():
+        pass
+    def blood_doesnt_define():
+        pass
+    def fight_to_survive():
+        pass
+    def Loonies_a_lunatic():
+        pass
+    def used_to_run():
+        pass
+    def passionate():
+        pass
+    def flowery_boy():
+        pass
+
+
+loonie = Loonie(name="Loonie Hikashi",
                    strenght="4",
                    mind="1",
                    agility="7",
@@ -8,7 +32,7 @@ loonie = NPC(name="Loonie Hikashi",
                    luck='1',
                    current_loc="Mt.Silver"
                    )
-haruki = NPC(name="Haruki Hirasawa", 
+haruki = Character(name="Haruki Hirasawa", 
                    strenght="2",
                    mind="1",
                    agility="7",
