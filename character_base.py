@@ -1,5 +1,4 @@
-from random import randint
-from typing import Callable
+from random import uniform
 
 class Character:
     def __init__(self, 
@@ -40,9 +39,12 @@ class Character:
         self.max_lunacy = int(self.mind)*6
         self.lunacy = int(self.max_lunacy)
         self.lunacy_resist = int(self.mind)*2
+        self.max_rage = int(self.mind)*10
+        self.rage = int(0)
 #agility stats
         self.critical = int(self.agility)*2
         self.dodge = int(self.agility)*2
+        self.speed = int(self.agility)
 #inteligence stats
         self.magical_damage = int(self.inteligence)
         self.max_mana = int(self.inteligence)*5
@@ -58,7 +60,7 @@ class Character:
         self.status[effect] = duration
     def round_status(self):
         if self.status['bleed'] > 0:
-            bleeding = int(float(self.max_hp)/50)
+            bleeding = int(float(self.max_hp)*(0.2))
             self.current_hp -= bleeding
             print(f'{self.name} loses {bleeding}HP by bleeding for {self.status['bleed']} rounds.')
             self.status['bleed'] -= 1
@@ -68,8 +70,8 @@ class Character:
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
         self.damage = int(self.strenght)
-        dodge = int(randint(0,100))
-        critical = int(randint(0,100))
+        dodge = int(uniform(0,1))
+        critical = int(uniform(0,1))
         if dodge <= self.dodge:
             self.damage = self.damage*0
             print(f"{target.name} avoided the attack!")

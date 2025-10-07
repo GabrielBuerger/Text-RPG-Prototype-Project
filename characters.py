@@ -1,4 +1,7 @@
+from character_base import Character
+from species import *
 from NPC import NPC
+from affiliations import *
 
 class Loonie(Character, Fox, The_Fox, The_Moon):
     def __init__(self, name, strenght, mind, agility, inteligence, luck, charisma, current_loc):
@@ -30,7 +33,7 @@ loonie = Loonie(name="Loonie Hikashi",
                    charisma='3',
                    current_loc="Mt.Silver"
                    )
-haruki = NPC(name="Haruki Hirasawa", 
+haruki = Character(name="Haruki Hirasawa", 
                    strenght="2",
                    mind="1",
                    agility="7",
