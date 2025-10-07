@@ -9,6 +9,7 @@ class Character:
                 agility:int,
                 inteligence:int,
                 luck:int,
+                charisma:int,
                 current_loc:str
                 ):
 #main stats
@@ -17,7 +18,10 @@ class Character:
         self.money = int(0)
         self.alive = bool(True)
         self.actions = int()
-        self.attack_moves = list()
+        self.passive_moves = list()
+        self.secret_passive= list()
+        self.physical_moves = list()
+        self.magic_moves = list()
         self.status_moves = list()
 #basic stats
         self.strenght = strenght
@@ -25,6 +29,7 @@ class Character:
         self.agility = agility
         self.inteligence = inteligence
         self.luck = luck
+        self.charisma = charisma
 #strenght stats
         self.max_hp = int(10 + int(self.strenght)*10)
         self.current_hp = int(self.max_hp)

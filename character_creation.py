@@ -1,50 +1,60 @@
 from settings import *
 
-def character_creation():
-    name = str(input("Insert your name: \n> "))
-    str_pts = mind_pts = agi_pts = int_pts = luc_pts = int(1)
-    init_maxpts = int(15)
-    max_pts = int(init_maxpts)
+def base_stats():
+    str_pts = mind_pts = agi_pts = int_pts = luc_pts = char_pts = int(1)
+    max_pts = int(15)
+    return(str_pts, mind_pts, agi_pts, int_pts, luc_pts, char_pts, max_pts)
+
+def save_character(str_pts, mind_pts, agi_pts, int_pts, luc_pts, char_pts, max_pts):
     while True:
-        clear()
-        line()
-        print(f'''REMAINING POINTS = {max_pts}
-1> Strenght: {str_pts}
-2> Mind: {mind_pts}
-3> Agility: {agi_pts}
-4> Inteligence: {int_pts}
-5> Luck: {luc_pts}''')
-        line()
-        if max_pts == 0:
-            print('''Are you sure you want to continue?
+        print('''Are you sure you want to continue?
 1> Save
 2> Reset''')
-            line()
-            choice = str(input("> "))
-            if choice == "1":
-                break
-            elif choice == "2":
-                str_pts = mind_pts = agi_pts = int_pts = luc_pts = int(1)
-                max_pts = int(init_maxpts)
-                continue
-            else:
-                input("Invalid input ")
+        line()
         choice = str(input("> "))
         if choice == "1":
-            str_pts +=1
-            max_pts -=1
+            return (False)
         elif choice == "2":
-            mind_pts +=1
-            max_pts -=1
-        elif choice == "3":
-            agi_pts +=1
-            max_pts -=1
-        elif choice == "4":
-            int_pts +=1
-            max_pts -=1
-        elif choice == "5":
-            luc_pts +=1
-            max_pts -=1
+            base_stats()
+            return(True)
         else:
             input("Invalid input ")
-    return name, str_pts, mind_pts, agi_pts, int_pts, luc_pts
+
+def character_creation():
+    name = str(input("Insert your name: \n> "))
+    stats = list(base_stats())
+    creating = bool(True)
+    while creating:
+        clear()
+        line()
+        print(f'''REMAINING POINTS = {stats[7]}
+1> Strenght: {stats[1]}
+2> Mind: {stats[2]}
+3> Agility: {stats[3]}
+4> Inteligence: {stats[4]}
+5> Luck: {stats[5]}
+6> Charisma: {stats[6]}''')
+        line()
+        if stats[7] == 0:
+            creating = save_character(stats[1], stats[2], stats[3], stats[4], stats[5], stats[6], stats[7])
+        choice = str(input("> "))
+        if choice == "1":
+            stats[1] +=1
+            stats[7] -=1
+        elif choice == "2":
+            stats[2] +=1
+            stats[7] -=1
+        elif choice == "3":
+            stats[3] +=1
+            stats[7] -=1
+        elif choice == "4":
+            stats[4] +=1
+            stats[7] -=1
+        elif choice == "5":
+            stats[5] +=1
+            stats[7] -=1
+        elif choice == "6":
+            stats[6] += 1
+        else:
+            input("Invalid input ")
+    return name, stats[1], stats[2], stats[3], stats[4], stats[5]

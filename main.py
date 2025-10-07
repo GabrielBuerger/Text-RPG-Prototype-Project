@@ -2,14 +2,14 @@ from player import Player
 from characters import *
 from character_creation import character_creation
 from settings import *
-from battle import Team, Battle
+from battle import Team, Party, Battle
 from saving import *
 
 run = bool(True)
 menu = bool(True)
 play = bool(True)
 player1 = Player()
-party = Team(player1)
+party = Party(player1, (haruki))
 
 current_loc = "Goldenrod town: Ramiel Hospital"
 
