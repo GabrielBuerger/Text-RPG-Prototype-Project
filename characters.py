@@ -1,8 +1,5 @@
 from NPC import NPC
 
-<<<<<<< Updated upstream
-loonie = NPC(name="Loonie Hikashi",
-=======
 class Loonie(Character, Fox, The_Fox, The_Moon):
     def __init__(self, name, strenght, mind, agility, inteligence, luck, charisma, current_loc):
         super().__init__(name, strenght, mind, agility, inteligence, luck, charisma, current_loc)
@@ -25,7 +22,6 @@ class Loonie(Character, Fox, The_Fox, The_Moon):
 
 
 loonie = Loonie(name="Loonie Hikashi",
->>>>>>> Stashed changes
                    strenght="4",
                    mind="1",
                    agility="7",
