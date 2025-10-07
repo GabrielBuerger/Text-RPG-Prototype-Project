@@ -6,8 +6,8 @@ class Character:
                 strenght:int,
                 mind:int,
                 agility:int,
-                inteligence:int,
-                luck:int,
+                intelect:int,
+                spirituality:int,
                 charisma:int,
                 current_loc:str
                 ):
@@ -26,14 +26,19 @@ class Character:
         self.strenght = strenght
         self.mind = mind
         self.agility = agility
-        self.inteligence = inteligence
-        self.luck = luck
+        self.intelect = intelect
+        self.spirit = spirituality
         self.charisma = charisma
+#spirituality
+        god_blessing = int(self.spirit)^2
 #strenght stats
-        self.max_hp = int(10 + int(self.strenght)*10)
-        self.current_hp = int(self.max_hp)
-        self.damage = int(2+int(self.strenght))
-        if self.current_hp == 0:
+        hp_base = int(25)
+        physical_base = int(self.strenght)*2
+        weapon_power = int()
+        self.max_hp = (int(self.strenght)*hp_base + god_blessing)*10
+        self.hp = int(self.max_hp)
+        self.damage = physical_base + weapon_power
+        if self.hp == 0:
             self.alive = bool(False)
 #mind stats
         self.max_lunacy = int(self.mind)*6
@@ -43,11 +48,14 @@ class Character:
         self.rage = int(0)
 #agility stats
         self.critical = int(self.agility)*2
-        self.dodge = int(self.agility)*2
+        self.evasion = int(self.agility)*2
         self.speed = int(self.agility)
 #inteligence stats
-        self.magical_damage = int(self.inteligence)
-        self.max_mana = int(self.inteligence)*5
+        mana_base = int(2)
+        magic_base = int(self.intelect)*2
+        spell_power = int()
+        self.magical_damage = magic_base + spell_power
+        self.max_mana = (god_blessing + int(self.intelect))*mana_base
         self.mana = int(self.max_mana)
 #status:
         self.status = dict()
@@ -60,8 +68,8 @@ class Character:
         self.status[effect] = duration
     def round_status(self):
         if self.status['bleed'] > 0:
-            bleeding = int(float(self.max_hp)*(0.2))
-            self.current_hp -= bleeding
+            bleeding = int(float(self.max_hp)*(0.02))
+            self.hp -= bleeding
             print(f'{self.name} loses {bleeding}HP by bleeding for {self.status['bleed']} rounds.')
             self.status['bleed'] -= 1
     def turn_satus(self):
@@ -72,20 +80,21 @@ class Character:
         self.damage = int(self.strenght)
         dodge = int(uniform(0,1))
         critical = int(uniform(0,1))
-        if dodge <= self.dodge:
+        crit_bonus = int(2+(float(self.strenght/10)))
+        if dodge <= self.evasion:
             self.damage = self.damage*0
             print(f"{target.name} avoided the attack!")
             critical = 100
         if critical <= self.critical:
             print(f"{self.name} gave critical damage!")
-            self.damage = self.damage*2       
-        target.current_hp -= self.damage
-        target.current_hp = max(target.current_hp, 0)
+            self.damage = self.damage*crit_bonus
+        target.hp -= self.damage
+        target.hp = max(target.hp, 0)
     def magic_attack(self:'Character', target:'Character'):
         self.mana -= 8
         self.mana = max(self.mana, 0)
-        target.current_hp -= self.magical_damage
-        target.current_hp = max(target.current_hp, 0)
+        target.hp -= self.magical_damage
+        target.hp = max(target.hp, 0)
     def action(self:'Character', target:'Character'):
         print("""
 >1 Basic attack

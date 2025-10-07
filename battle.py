@@ -1,4 +1,4 @@
-from character_base import Character, Team
+from character_base import Character
 from time import sleep
 from settings import *
 from team import Team, Party

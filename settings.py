@@ -9,7 +9,7 @@ def clear():
     os.system("cls")
 
 def character_menu(character:'Character'):
-    print(f"{character.name} HP:[{character.max_hp}/{character.current_hp}] Mana:[{character.max_mana}/{character.mana}]")
+    print(f"{character.name} HP:[{character.max_hp}/{character.hp}] Mana:[{character.max_mana}/{character.mana}]")
     print('Status:', character.status)
 def line(line:str="-", size:int=20):
     print(line*size)

@@ -1,11 +1,10 @@
 from character_base import Character
 from species import *
-from NPC import NPC
 from affiliations import *
 
-class Loonie(Character, Fox, The_Fox, The_Moon):
-    def __init__(self, name, strenght, mind, agility, inteligence, luck, charisma, current_loc):
-        super().__init__(name, strenght, mind, agility, inteligence, luck, charisma, current_loc)
+class Loonie(Fox, The_Fox, The_Moon):
+    def __init__(self, name, strenght, mind, agility, inteligence, spirituality, charisma, current_loc):
+        super().__init__(name, strenght, mind, agility, inteligence, spirituality, charisma, current_loc)
     def chosen_by_the_moon():
         pass
     def bastard_son():
@@ -25,20 +24,20 @@ class Loonie(Character, Fox, The_Fox, The_Moon):
 
 
 loonie = Loonie(name="Loonie Hikashi",
-                   strenght="4",
-                   mind="1",
-                   agility="7",
-                   inteligence='7',
-                   luck='1',
-                   charisma='3',
+                   strenght=4,
+                   mind=1,
+                   agility=7,
+                   inteligence=7,
+                   spirituality=4,
+                   charisma=3,
                    current_loc="Mt.Silver"
                    )
 haruki = Character(name="Haruki Hirasawa", 
-                   strenght="2",
-                   mind="1",
-                   agility="7",
-                   inteligence='5',
-                   luck='7',
-                   charisma='3',
+                   strenght=2,
+                   mind=1,
+                   agility=7,
+                   intelect=5,
+                   spirituality=7,
+                   charisma=3,
                    current_loc="The Giant mushroom forest"
                    )

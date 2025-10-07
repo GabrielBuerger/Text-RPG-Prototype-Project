@@ -1,8 +1,8 @@
 from character_base import Character
 from random import uniform
-from abc import abc
+from abc import ABC
 
-class The_Moon(abc):
+class The_Moon(ABC):
     def children_of_the_Moon():
         pass
     def insanity_fueled():
@@ -10,7 +10,7 @@ class The_Moon(abc):
     def crazy_strenght():
         pass
 
-class The_Fox(abc):
+class The_Fox(ABC):
     def violent_start(self:Character):
         self.rage = int(float(self.max_rage)*(0.4))
     def bloody_mess(self:Character, target:Character): 
