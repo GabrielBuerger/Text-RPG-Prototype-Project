@@ -1,40 +1,63 @@
-from character_base import Character
-from player import Player
+from player import Player, Character
 
-class Team():
-    def __init__(self, character1:Character,
-                 character2:Character=None, 
-                 character3:Character=None,
-                 character4:Character=None):
-        self.p1 = character1
-        self.p2 = character2
-        self.p3 = character3
-        self.p4 = character4
-        self.alive = bool(False)
-        if self.p1.alive == False and self.p2.alive == False and self.p3.alive == False and self.p4.alive == False:
-            self.alive = bool(False)
-
-class Party():
-    def __init__(self, protagonist:Player, members:list[Player]):
-        self.protag = protagonist
+class Enemy_party():
+    def __init__(self, members:list[Character]=None):
         self.members = members
+        self.alive = bool(False)
+        self.deaths = int(0)
+    def show_team(self):
+        team_info = dict()
+        for member in (0,len(self.members)):
+            team_info[str(self.members[member])] = bool(self.members[member].alive)
+        if team_info[member].alive == bool(True):
+            print(f"{self.members[member]} (ALIVE)", end='')
+        elif team_info[str(self.members[member])] == bool(False):
+            print(f"{self.members[member]} (DEAD)", end='')
+        if member != len(self.members):
+            print(", ", end='')
+        else:
+            print(". ")
+    def is_alive(self):
+        for member in (0,len(self.members)):
+            if self.members[member].alive == False:
+                self.deaths += 1
+            if self.deaths == len(self.members):
+                self.deaths = int(0)
+                self.alive = False
+            else:
+                pass    
+
+
+class Player_party():
+    def __init__(self, protagonist:Player, allies:list[Character]|Character=None):
+        self.protag = protagonist
+        self.allies = allies
         self.party_size = int(self.protag.charisma)
         self.members = list([None] * self.party_size)
-        self.members.insert(0,self.protag)
+        self.members.append(self.protag)
+        if isinstance(allies, Character):
+            self.members.append(self.allies)
+        else:
+            for member in range(0, len(list(self.allies))):
+                self.members.append(self.allies[member])
         self.deaths = int(0)
         self.alive = bool(True)
     def show_party(self):
         party_info = dict()
         print("Party", end=": ")
-        for player in (0,len(self.members)):
-            party_info[str(self.members[player])] = bool(self.members[player].alive)
-            if party_info[str(self.members[player])] == bool(True):
-                print(f"{self.members[player]} (ALIVE)")
-            elif party_info[str(self.members[player])] == bool(False):
-                print(f"{self.members[player]} (DEAD)")
+        for ally in (0,len(self.members)):
+            party_info[str(self.members[ally])] = bool(self.members[ally].alive)
+            if party_info[str(self.members[ally])] == bool(True):
+                print(f"{self.members[ally]} (ALIVE)", end='')
+            elif party_info[str(self.members[ally])] == bool(False):
+                print(f"{self.members[ally]} (DEAD)", end='')
+            if ally != len(self.members):
+                print(", ", end='')
+            else:
+                print(". ")
     def is_alive(self):
-        for player in (0,len(self.members)):
-            if self.members[player].alive == False:
+        for ally in (0,len(self.members)):
+            if self.members[ally].alive == False:
                 self.deaths += 1
             if self.deaths == len(self.members):
                 self.deaths = int(0)

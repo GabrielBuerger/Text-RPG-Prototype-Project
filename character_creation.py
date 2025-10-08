@@ -1,9 +1,9 @@
 from settings import *
 
 def base_stats():
-    str_pts = mind_pts = agi_pts = int_pts = spi_pts = char_pts = int(1)
+    str_pts = mind_pts = agi_pts = int_pts = spi_pts = char_pts, luc_pts = int(1)
     max_pts = int(15)
-    return(max_pts, str_pts, mind_pts, agi_pts, int_pts, spi_pts, char_pts)
+    return list(max_pts, str_pts, mind_pts, agi_pts, int_pts, spi_pts, char_pts, luc_pts)
 
 def save_character(stats:list):
     while True:
@@ -16,14 +16,14 @@ def save_character(stats:list):
             return (False, stats)
         elif choice == "2":
             stats.clear()
-            stats = list(base_stats())
+            stats = base_stats()
             return(True, stats)
         else:
             input("Invalid input ")
 
 def character_creation():
     name = str(input("Insert your name: \n> "))
-    stats = list(base_stats())
+    stats = base_stats()
     creating = bool(True)
     while creating:
         clear()
@@ -34,7 +34,8 @@ def character_creation():
 3> Agility: {stats[3]}
 4> Inteligence: {stats[4]}
 5> Spirituality: {stats[5]}
-6> Charisma: {stats[6]}''')
+6> Charisma: {stats[6]}
+7> Luck: {stats[7]}''')
         line()
         if stats[0] == 0:
             creating, stats = save_character(stats=stats)
@@ -58,6 +59,9 @@ def character_creation():
         elif choice == "6":
             stats[6] += 1
             stats[0] -=1
+        elif choice == "7":
+            stats[7] += 1
+            stats[0] -=1
         else:
             input("Invalid input ")
-    return name, stats[1], stats[2], stats[3], stats[4], stats[5], stats[6]
+    return name, stats[1], stats[2], stats[3], stats[4], stats[5], stats[6], stats[7]

@@ -9,7 +9,7 @@ run = bool(True)
 menu = bool(True)
 play = bool(True)
 player1 = Player()
-party = Party(player1, (haruki))
+party = Player_party(player1, (haruki))
 
 current_loc = "Goldenrod town: Ramiel Hospital"
 
@@ -20,12 +20,12 @@ while menu == True:
 >2 Load game
 >3 Options
 >4 Quit
-''', 
+''',
 20*"=")
     choice = str(input("> "))
     if choice == "1":
-        name, stenghth, mind, agility, inteligence, spirit, charisma = character_creation()
-        player1 = Player(name, stenghth, mind, agility, inteligence, spirit, charisma, current_loc)
+        name, stenghth, mind, agility, inteligence, spirit, charisma, luck = character_creation()
+        player1 = Player(name, stenghth, mind, agility, inteligence, spirit, charisma, luck, current_loc)
         save(player1)
         menu = False
     elif choice == "2":
@@ -43,10 +43,10 @@ while menu == True:
         print("Invalid input")
 while play:
     if current_loc == loonie.current_loc:
-        player1.set_status('bleed',3)
-        Battle((player1), (loonie))
+        status.set_status(player1, 'bleed', 3)
+        Battle(party, loonie)
     if current_loc == haruki.current_loc:
-        Battle(player1, haruki)
+        Battle(party, haruki)
     clear()
     line()
     character_menu(player1)
@@ -58,7 +58,6 @@ while play:
     choice = str(input("> "))
     if choice == "0":
         menu, play = True, False
-        break
     elif choice == "1":
         player1.move(current_location=current_loc)
         current_loc = player1.current_loc

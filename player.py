@@ -2,8 +2,8 @@ from character_base import Character
 from map import map
 
 class Player(Character):
-    def __init__(self, name='Unk', strenght='0', mind='0', agility='0', inteligence='0', spirit='0', charisma='0', current_loc:str="Void"):
-        super().__init__(name, strenght, mind, agility, inteligence, spirit, charisma, current_loc)
+    def __init__(self, name='Unk', strenght='0', mind='0', agility='0', inteligence='0', spirit='0', luck=0, charisma='0', current_loc:str="Void"):
+        super().__init__(name, strenght, mind, agility, inteligence, spirit, charisma, luck, current_loc)
     def turn(self, target:Character=None, actions:int=1):
         print("""
 >1 Basic attack

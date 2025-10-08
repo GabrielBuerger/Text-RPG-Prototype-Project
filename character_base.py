@@ -9,9 +9,10 @@ class Character:
                 intelect:int,
                 spirituality:int,
                 charisma:int,
+                luck:int,
                 current_loc:str
                 ):
-#main stats
+#main stats 
         self.name = name
         self.current_loc = current_loc
         self.money = int(0)
@@ -29,6 +30,7 @@ class Character:
         self.intelect = intelect
         self.spirit = spirituality
         self.charisma = charisma
+        self.luck = luck
 #spirituality
         god_blessing = int(self.spirit)^2
 #strenght stats
@@ -58,23 +60,10 @@ class Character:
         self.max_mana = (god_blessing + int(self.intelect))*mana_base
         self.mana = int(self.max_mana)
 #status:
-        self.status = dict()
         self.status = {
             'bleed':0,
             'frozen':0
         }
-    def set_status(self, effect:str, duration:int, round:bool=True):
-        self.status = dict()
-        self.status[effect] = duration
-    def round_status(self):
-        if self.status['bleed'] > 0:
-            bleeding = int(float(self.max_hp)*(0.02))
-            self.hp -= bleeding
-            print(f'{self.name} loses {bleeding}HP by bleeding for {self.status['bleed']} rounds.')
-            self.status['bleed'] -= 1
-    def turn_satus(self):
-        if self.status['frozen'] > 0:
-            self.actions = 0
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
         self.damage = int(self.strenght)
@@ -99,14 +88,14 @@ class Character:
         print("""
 >1 Basic attack
 >2 Defend
->3 Atack skills
+>3 Attack skills
 >4 special skills""")
         select = input("\n>")
         if select == "1":
             self.basic_attack(target)
             print(f"{target.name} taked {self.damage} damage")
         elif select == "2" and self.mana < 8:
-            print("You've run out of mana, you can't perform a magical attack")
+            print("You've run out of mana, you can't perform magic.")
         elif select == "2":
             self.magic_attack(target)
             print(f"{target.name} taked {self.magical_damage} from magical damage")
