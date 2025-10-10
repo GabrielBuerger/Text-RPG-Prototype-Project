@@ -32,7 +32,7 @@ def character_creation():
 1> Strenght: {stats[1]}
 2> Mind: {stats[2]}
 3> Agility: {stats[3]}
-4> Inteligence: {stats[4]}
+4> Intelect: {stats[4]}
 5> Spirituality: {stats[5]}
 6> Charisma: {stats[6]}
 7> Luck: {stats[7]}''')
@@ -41,27 +41,34 @@ def character_creation():
             creating, stats = save_character(stats=stats)
             continue
         choice = str(input("> "))
-        if choice == "1":
+        if choice == "1": #Strenght
             stats[1] +=1
             stats[0] -=1
-        elif choice == "2":
+        elif choice == "2": #Mind
             stats[2] +=1
             stats[0] -=1
-        elif choice == "3":
+        elif choice == "3": #Agility
             stats[3] +=1
             stats[0] -=1
-        elif choice == "4":
+        elif choice == "4": # Inteligence
             stats[4] +=1
             stats[0] -=1
-        elif choice == "5":
+        elif choice == "5": # Spirituality
             stats[5] +=1
             stats[0] -=1
-        elif choice == "6":
+        elif choice == "6": # Charisma
             stats[6] += 1
             stats[0] -=1
-        elif choice == "7":
+        elif choice == "7": # Luck
             stats[7] += 1
             stats[0] -=1
         else:
             input("Invalid input ")
-    return name, stats[1], stats[2], stats[3], stats[4], stats[5], stats[6], stats[7]
+    return (str(name), 
+            int(stats[1]), #Strengh
+            int(stats[2]), #Mind
+            int(stats[3]), #Agility
+            int(stats[4]), #Intelect
+            int(stats[5]), #Spirituality
+            int(stats[6]), #Charisma
+            int(stats[7])) #Luck

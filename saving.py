@@ -22,3 +22,23 @@ def load(player:Player):
         if value.isnumeric():
             value = int(value)
         setattr(player, str(key), value)
+
+def overwritting(player:Player):
+    try:
+        with open("data.txt", '+r') as file:
+            choice = int()
+            load(player)
+            while True:
+                print("Are you sure you want to overwrite your last save? ")
+                print('''   >1 Yes
+    >2 No
+''')
+                choice = str(input("> "))
+                if choice == "1":
+                    return True
+                elif choice == "2":
+                    return False
+                else:
+                    print("Invalid output")
+    except:
+        pass

@@ -1,11 +1,12 @@
-from player import Player, Character
+from player import Player
+from NPC import NPC
 
-class Enemy_party():
-    def __init__(self, members:list[Character]=None):
+class Party():
+    def __init__(self, members:list[NPC]):
         self.members = members
-        self.alive = bool(False)
+        self.alive = bool(True)
         self.deaths = int(0)
-    def show_team(self):
+    def show_party(self):
         team_info = dict()
         for member in (0,len(self.members)):
             team_info[str(self.members[member])] = bool(self.members[member].alive)
@@ -29,17 +30,11 @@ class Enemy_party():
 
 
 class Player_party():
-    def __init__(self, protagonist:Player, allies:list[Character]|Character=None):
+    def __init__(self, protagonist:Player):
         self.protag = protagonist
-        self.allies = allies
         self.party_size = int(self.protag.charisma)
-        self.members = list([None] * self.party_size)
+        self.members = list()
         self.members.append(self.protag)
-        if isinstance(allies, Character):
-            self.members.append(self.allies)
-        else:
-            for member in range(0, len(list(self.allies))):
-                self.members.append(self.allies[member])
         self.deaths = int(0)
         self.alive = bool(True)
     def show_party(self):
@@ -48,9 +43,9 @@ class Player_party():
         for ally in (0,len(self.members)):
             party_info[str(self.members[ally])] = bool(self.members[ally].alive)
             if party_info[str(self.members[ally])] == bool(True):
-                print(f"{self.members[ally]} (ALIVE)", end='')
+                print(f"{self.members[ally].name} (ALIVE)", end='')
             elif party_info[str(self.members[ally])] == bool(False):
-                print(f"{self.members[ally]} (DEAD)", end='')
+                print(f"{self.members[ally].name} (DEAD)", end='')
             if ally != len(self.members):
                 print(", ", end='')
             else:
@@ -64,3 +59,5 @@ class Player_party():
                 self.alive = False
             else:
                 pass
+    def add_member(self, member:Player):
+        self.members.append(member)

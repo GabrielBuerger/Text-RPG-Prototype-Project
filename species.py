@@ -2,7 +2,7 @@ from character_base import Character
 from random import uniform
 
 class Fox (Character):
-    def __init__(self, name:str, strenght:int, mind:int, agility:int, intelect:int, spirituality:int, luck:int, charisma:int, current_loc:str):
+    def __init__(self, name:str, strenght:int, mind:int, agility:int, intelect:int, spirituality:int, charisma:int, luck:int, current_loc:str):
         super().__init__(name, strenght, mind, agility, intelect, spirituality, charisma, luck, current_loc)
     def quick_feet(self:Character):
         self.actions = int(2)

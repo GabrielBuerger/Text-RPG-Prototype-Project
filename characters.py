@@ -23,22 +23,22 @@ class Loonie(Fox, The_Fox, The_Moon):
 
 
 loonie = Loonie(name="Loonie Hikashi",
-                   strenght=4,
-                   mind=1,
-                   agility=7,
-                   inteligence=7,
-                   spirituality=4,
-                   charisma=3,
-                   luck=1,
-                   current_loc="Mt.Silver"
-                   )
+    strenght=4,
+    mind=1,
+    agility=7,
+    inteligence=7,
+    spirituality=4,
+    charisma=3,
+    luck=1,
+    current_loc="Mt.Silver"
+    )
 haruki = Character(name="Haruki Hirasawa", 
-                   strenght=2,
-                   mind=1,
-                   agility=7,
-                   intelect=5,
-                   spirituality=7,
-                   charisma=3,
-                   luck=7,
-                   current_loc="The Giant mushroom forest"
-                   )
+    strenght=2,
+    mind=1,
+    agility=7,
+    intelect=5,
+    spirituality=7,
+    charisma=3,
+    luck=7,
+    current_loc="The Giant mushroom forest"
+    )

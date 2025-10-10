@@ -1,4 +1,4 @@
-from random import uniform
+from random import uniform, randint
 
 class Character:
     def __init__(self, 
@@ -17,7 +17,7 @@ class Character:
         self.current_loc = current_loc
         self.money = int(0)
         self.alive = bool(True)
-        self.actions = int()
+        self.actions = int(1)
         self.passive_moves = list()
         self.secret_passive= list()
         self.physical_moves = list()
@@ -49,8 +49,9 @@ class Character:
         self.max_rage = int(self.mind)*10
         self.rage = int(0)
 #agility stats
-        self.critical = int(self.agility)*2
-        self.evasion = int(self.agility)*2
+        self.armor_wgt_debuff = int(0)
+        self.critical = float(int(self.agility) + int(float(self.luck)/2) + int(float(self.intelect)/2))/100
+        self.evasion = float(int(self.agility) + int(self.luck))/100
         self.speed = int(self.agility)
 #inteligence stats
         mana_base = int(2)
@@ -67,14 +68,15 @@ class Character:
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
         self.damage = int(self.strenght)
-        dodge = int(uniform(0,1))
-        critical = int(uniform(0,1))
         crit_bonus = int(2+(float(self.strenght/10)))
-        if dodge <= self.evasion:
+        chance = float(uniform(0,1))
+        print(chance, target.evasion)
+        if chance < target.evasion:
             self.damage = self.damage*0
             print(f"{target.name} avoided the attack!")
-            critical = 100
-        if critical <= self.critical:
+        chance = float(uniform(0,1))
+        print(chance, target.critical)
+        if chance < self.critical:
             print(f"{self.name} gave critical damage!")
             self.damage = self.damage*crit_bonus
         target.hp -= self.damage
@@ -84,22 +86,18 @@ class Character:
         self.mana = max(self.mana, 0)
         target.hp -= self.magical_damage
         target.hp = max(target.hp, 0)
-    def action(self:'Character', target:'Character'):
-        print("""
->1 Basic attack
->2 Defend
->3 Attack skills
->4 special skills""")
-        select = input("\n>")
-        if select == "1":
-            self.basic_attack(target)
-            print(f"{target.name} taked {self.damage} damage")
-        elif select == "2" and self.mana < 8:
-            print("You've run out of mana, you can't perform magic.")
-        elif select == "2":
-            self.magic_attack(target)
-            print(f"{target.name} taked {self.magical_damage} from magical damage")
-            print(f"Mana:[{self.max_mana}/{self.mana}]")
-        else:
-            print("Invalid input. Please, insert again.")
-    # def equip(self, equipment):
+    def action(self, target:'Character'=None):
+        while True != 0:
+            select = str(randint(1,2))
+            if select == "1":
+                self.basic_attack(target)
+                print(f"{target.name} taked {self.damage} damage")
+                break
+            elif select == "2" and self.mana < 8:
+                pass
+            elif select == "2":
+                self.magic_attack(target)
+                print(f"{target.name} taked {self.magical_damage} from magical damage")
+                print(f"Mana:[{self.max_mana}/{self.mana}]")
+                break
+
