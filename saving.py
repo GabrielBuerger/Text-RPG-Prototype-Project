@@ -25,12 +25,12 @@ def load(player:Player):
 
 def overwritting(player:Player):
     try:
-        with open("data.txt", '+r') as file:
+        with open("data.txt", 'r') as file:
             choice = int()
             load(player)
             while True:
                 print("Are you sure you want to overwrite your last save? ")
-                print('''   >1 Yes
+                print('''    >1 Yes
     >2 No
 ''')
                 choice = str(input("> "))
@@ -41,4 +41,4 @@ def overwritting(player:Player):
                 else:
                     print("Invalid output")
     except:
-        pass
+        return True

@@ -17,6 +17,7 @@ current_loc = "Goldenrod town: Ramiel Hospital"
 while run: #main loop
     while menu == True:
         clear()
+        print("GAME TITLE")
         line("=", 22)
         print('''    >1 New game
     >2 Load game
@@ -49,7 +50,7 @@ while run: #main loop
 
     while play: #game loop
         if current_loc == loonie.current_loc:
-            status.set_status(player1, 'bleed', 3)
+            Status.set_status(player1, 'bleed', 3)
             enemies = Party((loonie, haruki))
             Battle(My_party, enemies)
         if current_loc == haruki.current_loc:
@@ -60,20 +61,15 @@ while run: #main loop
         print(f'''You are in {player1.current_loc}
     >0 Menu
     >1 Go somewhere''')
-        print(current_loc)
         line()
         choice = str(input("> "))
         if choice == "0":
             menu, play = True, False
         elif choice == "1":
+            line()
             player1.move(current_location=current_loc)
             current_loc = player1.current_loc
             clear()
         elif choice == "2":
             player1.check_inventory()
             input()
-
-print(f"{haruki.name} critical chance: {haruki.critical*100}%")
-print(f"{haruki.name} evasion chance: {haruki.evasion*100}%")
-print(f"{loonie.name} critical chance: {loonie.critical*100}%")
-print(f"{loonie.name} evasion chance: {loonie.evasion*100}%")

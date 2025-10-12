@@ -18,11 +18,10 @@ class Character:
         self.money = int(0)
         self.alive = bool(True)
         self.actions = int(1)
-        self.passive_moves = list()
-        self.secret_passive= list()
-        self.physical_moves = list()
-        self.magic_moves = list()
-        self.status_moves = list()
+        self.passive_skills = list()
+        self.physical_skills = list()
+        self.magic_skills = list()
+        self.suport_skills = list()
 #basic stats
         self.strenght = strenght
         self.mind = mind
@@ -36,10 +35,10 @@ class Character:
 #strenght stats
         hp_base = int(25)
         physical_base = int(self.strenght)*2
-        weapon_power = int()
+        #weapon_power = int(1)
         self.max_hp = (int(self.strenght)*hp_base + god_blessing)*10
         self.hp = int(self.max_hp)
-        self.damage = physical_base + weapon_power
+        self.physical_damage = physical_base #* weapon_power
         if self.hp == 0:
             self.alive = bool(False)
 #mind stats
@@ -52,6 +51,7 @@ class Character:
         self.armor_wgt_debuff = int(0)
         self.critical = float(int(self.agility) + int(float(self.luck)/2) + int(float(self.intelect)/2))/100
         self.evasion = float(int(self.agility) + int(self.luck))/100
+        self.run = int(self.agility)
         self.speed = int(self.agility)
 #inteligence stats
         mana_base = int(2)
@@ -61,25 +61,21 @@ class Character:
         self.max_mana = (god_blessing + int(self.intelect))*mana_base
         self.mana = int(self.max_mana)
 #status:
-        self.status = {
-            'bleed':0,
-            'frozen':0
-        }
+        self.status = dict()
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
-        self.damage = int(self.strenght)
-        crit_bonus = int(2+(float(self.strenght/10)))
-        chance = float(uniform(0,1))
-        print(chance, target.evasion)
-        if chance < target.evasion:
-            self.damage = self.damage*0
+        self.physical_damage = int(self.strenght)*2
+        crit_bonus = float(2+(float(self.strenght/10)))
+        chance = float(round(uniform(0,1),2))
+        if float(chance) <= float(target.evasion):
+            self.physical_damage = self.physical_damage*0
             print(f"{target.name} avoided the attack!")
-        chance = float(uniform(0,1))
-        print(chance, target.critical)
-        if chance < self.critical:
+            return
+        chance = float(round(uniform(0,1),2))
+        if float(chance) <= float(self.critical):
             print(f"{self.name} gave critical damage!")
-            self.damage = self.damage*crit_bonus
-        target.hp -= self.damage
+            self.physical_damage = int(self.physical_damage*crit_bonus)
+        target.hp -= self.physical_damage
         target.hp = max(target.hp, 0)
     def magic_attack(self:'Character', target:'Character'):
         self.mana -= 8
@@ -91,13 +87,13 @@ class Character:
             select = str(randint(1,2))
             if select == "1":
                 self.basic_attack(target)
-                print(f"{target.name} taked {self.damage} damage")
+                print(f"{target.name} took {self.physical_damage} damage")
                 break
             elif select == "2" and self.mana < 8:
                 pass
             elif select == "2":
                 self.magic_attack(target)
-                print(f"{target.name} taked {self.magical_damage} from magical damage")
+                print(f"{target.name} took {self.magical_damage} from magical damage")
                 print(f"Mana:[{self.max_mana}/{self.mana}]")
                 break
 

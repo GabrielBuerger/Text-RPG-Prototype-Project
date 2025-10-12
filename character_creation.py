@@ -1,9 +1,9 @@
 from settings import *
 
 def base_stats():
-    str_pts = mind_pts = agi_pts = int_pts = spi_pts = char_pts, luc_pts = int(1)
+    str_pts = mind_pts = agi_pts = int_pts = spi_pts = char_pts = luc_pts = int(1)
     max_pts = int(15)
-    return list(max_pts, str_pts, mind_pts, agi_pts, int_pts, spi_pts, char_pts, luc_pts)
+    return (max_pts, str_pts, mind_pts, agi_pts, int_pts, spi_pts, char_pts, luc_pts)
 
 def save_character(stats:list):
     while True:
@@ -23,7 +23,7 @@ def save_character(stats:list):
 
 def character_creation():
     name = str(input("Insert your name: \n> "))
-    stats = base_stats()
+    stats = list(base_stats())
     creating = bool(True)
     while creating:
         clear()
