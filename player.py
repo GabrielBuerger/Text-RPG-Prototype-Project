@@ -47,3 +47,7 @@ class Player(Character):
             else:
                 print("invalid comand")
         return new_location
+    def check_inventory(self):
+        print(self.inventory)
+    def add_inventory(self, item):
+        self.inventory = item

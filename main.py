@@ -71,5 +71,6 @@ while run: #main loop
             current_loc = player1.current_loc
             clear()
         elif choice == "2":
+            player1.add_inventory("potion")
             player1.check_inventory()
             input()

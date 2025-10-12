@@ -16,6 +16,7 @@ class Character:
         self.name = name
         self.current_loc = current_loc
         self.money = int(0)
+        self.inventory = list()
         self.alive = bool(True)
         self.actions = int(1)
         self.passive_skills = list()
