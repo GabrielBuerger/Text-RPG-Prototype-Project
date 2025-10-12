@@ -1,10 +1,6 @@
 import os
 from character_base import Character
 
-# class array():
-#     def __init__(self, *args):
-#         array = list()
-
 def clear():
     os.system("cls")
 
@@ -13,3 +9,10 @@ def character_menu(character:'Character'):
     print('Status:', character.status)
 def line(line:str="-", size:int=20):
     print(line*size)
+
+def print_dialogue(speaker:Character, text:str="..."):
+    line()
+    print(f"{speaker.name}: ")
+    print(text)
+    line()
+    input("> ")

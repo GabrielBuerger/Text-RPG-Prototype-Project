@@ -5,6 +5,8 @@ from settings import *
 from battle import *
 from saving import *
 
+text = str("""This is an example of text""")
+
 run = bool(True)
 menu = bool(True)
 play = bool(True)
@@ -33,6 +35,7 @@ while run: #main loop
                 player1 = Player(name, stenghth, mind, agility, inteligence, spirit, charisma, luck, current_loc)
                 save(player1)
                 clear()
+                play = True
                 menu = False
         elif choice == "2":
             try:
@@ -49,6 +52,7 @@ while run: #main loop
             print("Invalid input")
 
     while play: #game loop
+        print_dialogue(player1, text)
         if current_loc == loonie.current_loc:
             Status.set_status(player1, 'bleed', 3)
             enemies = Party((loonie, haruki))
@@ -64,6 +68,7 @@ while run: #main loop
         line()
         choice = str(input("> "))
         if choice == "0":
+            clear()
             menu, play = True, False
         elif choice == "1":
             line()
