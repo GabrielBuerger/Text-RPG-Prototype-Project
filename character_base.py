@@ -43,15 +43,14 @@ class Character:
         if self.hp == 0:
             self.alive = bool(False)
 #mind stats
-        self.max_lunacy = int(self.mind)*6
-        self.lunacy = int(self.max_lunacy)
-        self.lunacy_resist = int(self.mind)*2
-        self.max_rage = int(self.mind)*10
+        self.max_sanity = int(50 + (int(self.mind)*10) + (int(self.luck)))
+        self.sanity = int(self.max_sanity)
+        self.max_rage = int(50 + (int(self.mind)*6) + (int(self.luck)))
         self.rage = int(0)
 #agility stats
         self.armor_wgt_debuff = int(0)
         self.critical = float(int(self.agility) + int(float(self.luck)/2) + int(float(self.intelect)/2))/100
-        self.evasion = float(int(self.agility) + int(self.luck))/100
+        self.evasion = float(int(self.agility) + (int(self.luck)))/100
         self.run = int(self.agility)
         self.speed = int(self.agility)
 #inteligence stats
@@ -66,14 +65,14 @@ class Character:
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
         self.physical_damage = int(self.strenght)*2
-        crit_bonus = float(2+(float(self.strenght/10)))
-        chance = float(round(uniform(0,1),2))
-        if float(chance) <= float(target.evasion):
+        crit_bonus = float(2 + (float(self.strenght/10)))
+        evasion_chance = float(round(uniform(0,1),2))
+        critical_chance = float(round(uniform(0,1),2))
+        if float(evasion_chance) <= float(target.evasion):
             self.physical_damage = self.physical_damage*0
             print(f"{target.name} avoided the attack!")
-            return
-        chance = float(round(uniform(0,1),2))
-        if float(chance) <= float(self.critical):
+            critical_chance = float(1)
+        if float(critical_chance) <= float(self.critical):
             print(f"{self.name} gave critical damage!")
             self.physical_damage = int(self.physical_damage*crit_bonus)
         target.hp -= self.physical_damage
@@ -83,7 +82,7 @@ class Character:
         self.mana = max(self.mana, 0)
         target.hp -= self.magical_damage
         target.hp = max(target.hp, 0)
-    def action(self, target:'Character'=None):
+    def action(self, target:'Character'):
         while True != 0:
             select = str(randint(1,2))
             if select == "1":
@@ -97,4 +96,12 @@ class Character:
                 print(f"{target.name} took {self.magical_damage} from magical damage")
                 print(f"Mana:[{self.max_mana}/{self.mana}]")
                 break
-
+    def sanity_check(self):
+        if self.sanity < int(float(self.max_sanity)*0.8):
+            shadows = list()
+            c = 8
+            for sanity_left in range(c,0):
+                if int(self.sanity) < int(float(self.max_sanity/(float(sanity_left))*10)):
+                    c-1
+                    shadows.append(Character((f"{self.name}'s Shadow",self,1,1,1,1,1,1,1)))
+                    return list(shadows) 
