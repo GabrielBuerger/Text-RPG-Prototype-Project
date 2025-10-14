@@ -2,7 +2,6 @@ from time import sleep
 from settings import *
 from status_base import *
 from team import Party, Player_party
-from shadow import *
 from player import Player, Character
 from random import randint
 
@@ -20,8 +19,7 @@ def win_cond(player_side:Player_party|Character, enemy_side:Party|Character):
     
 
 def Battle (player_side:Player_party, 
-            enemy_side:Party, 
-            shadow_side:Party=None):
+            enemy_side:Party):
 # Battle menu
     characters = list()
     print("BATTLE AHEAD!")
@@ -53,8 +51,7 @@ def Battle (player_side:Player_party,
 
 def round(player_side:Player_party, 
           enemy_side:Party, 
-          turn_order:list,
-          shadow_team:Party=None):
+          turn_order:list):
 # turn order organizing
 # Characters' turns
     for character in range(0, len(turn_order)):
@@ -74,8 +71,6 @@ def round(player_side:Player_party,
         elif (len(enemy_side.members) == 1) and (turn_order[character] in enemy_side.members):
             turn(turn_order[character], player_side)
 
-
-        input()
         battle = win_cond(player_side, enemy_side)
         if battle == False:
             return battle
@@ -83,8 +78,7 @@ def round(player_side:Player_party,
 
 def turn(character:Character, 
          enemies:Party|Player_party, 
-         allies:Player_party|Party=None,
-         shadow_team:Party=None):
+         allies:Player_party|Party=None):
     clear()
     print(f"{character.name}'s turn")
     line()
@@ -122,11 +116,11 @@ def turn(character:Character,
         print(f'Quick feet! {character.name} have one more action.')
         turn(character=character, enemies=enemies, allies=allies)
     Status.proccess_status(character)
-    if shadow_team != None:
-        shadow_team.members.append(character.sanity_check())
+    character.inner_mind()
+    input()
 
 
-def player_target(enemies:Party, shadows:Party=None):
+def player_target(enemies:Party):
     if len(enemies.members) > 1:
         while True:
             clear()
@@ -158,7 +152,7 @@ def player_target(enemies:Party, shadows:Party=None):
     #     for s in range(0, len(shadows.members)):
     #         print(f"    >{s+1} {shadows.members[s].name}") 
 
-def NPC_target(enemies: Player_party, shadows:Party=None):
+def NPC_target(enemies: Player_party):
     if len(enemies.members) > 1:
         choice = randint(0, len(enemies.members))
         for c in range(0, len(enemies.members)):

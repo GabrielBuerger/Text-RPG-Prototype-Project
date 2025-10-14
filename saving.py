@@ -22,6 +22,7 @@ def load(player:Player):
         if value.isnumeric():
             value = int(value)
         setattr(player, str(key), value)
+    player.status = {}
 
 def overwritting(player:Player):
     try:

@@ -43,8 +43,10 @@ class Character:
         if self.hp == 0:
             self.alive = bool(False)
 #mind stats
-        self.max_sanity = int(50 + (int(self.mind)*10) + (int(self.luck)))
+        self.max_sanity = int(89 + (int(self.mind)*10) + (int(self.luck)))
         self.sanity = int(self.max_sanity)
+        self.sanity = max(self.sanity, 0)
+        self.shadows = []
         self.max_rage = int(50 + (int(self.mind)*6) + (int(self.luck)))
         self.rage = int(0)
 #agility stats
@@ -61,7 +63,7 @@ class Character:
         self.max_mana = (god_blessing + int(self.intelect))*mana_base
         self.mana = int(self.max_mana)
 #status:
-        self.status = dict()
+        self.status = {}
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
         self.physical_damage = int(self.strenght)*2
@@ -87,21 +89,29 @@ class Character:
             select = str(randint(1,2))
             if select == "1":
                 self.basic_attack(target)
-                print(f"{target.name} took {self.physical_damage} damage")
+                print(f"{self.name} attacked {target.name} dealing {self.physical_damage} damage")
                 break
             elif select == "2" and self.mana < 8:
                 pass
             elif select == "2":
                 self.magic_attack(target)
-                print(f"{target.name} took {self.magical_damage} from magical damage")
+                print(f"{self.name} attacked {target.name} dealing {self.magical_damage} from magical damage")
                 print(f"Mana:[{self.max_mana}/{self.mana}]")
                 break
-    def sanity_check(self):
+    def inner_mind(self):
+        #Shadows appearence:
+        shadow = Character(f"{self.name}'s Shadow", 1,1,1,1,1,1,1)
         if self.sanity < int(float(self.max_sanity)*0.8):
-            shadows = list()
-            c = 8
-            for sanity_left in range(c,0):
-                if int(self.sanity) < int(float(self.max_sanity/(float(sanity_left))*10)):
-                    c-1
-                    shadows.append(Character((f"{self.name}'s Shadow",self,1,1,1,1,1,1,1)))
-                    return list(shadows) 
+            print(f"Shadows looming around {self.name}, but no one else seems to notice...")
+            c = int(0)
+            for percentage in range(8,0):
+                if int(self.sanity) < ((self.max_sanity)*(percentage/10)) and len(self.shadows) == c:
+                    self.shadows.append(shadow)
+                else:
+                    c += len(self.shadows)
+        #Shadows action:
+            for i in (0,len(self.shadows)):
+                shadow.action(self)
+
+    
+

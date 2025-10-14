@@ -52,10 +52,9 @@ while run: #main loop
             print("Invalid input")
 
     while play: #game loop
-        print_dialogue(player1, text)
         if current_loc == loonie.current_loc:
-            Status.set_status(player1, 'bleed', 3)
-            Status.set_status(player1, 'insanity', 9)
+            player1.status.update({'bleed': 3})
+            player1.status.update({'insanity': 9})
             enemies = Party((loonie, haruki))
             Battle(My_party, enemies)
         if current_loc == haruki.current_loc:

@@ -14,6 +14,17 @@ Computation
             functional (Lisp, Haskell, modern JS): list as matematical formulas
             declarative/reactive (SQL, HTML, React, Prolog): states goals, no matter the proccess
 
+data prototypes:
+    ":" is a type hint
+    Static Typing 🧊	
+        Types are checked at compile time	
+        Errors found before the program runs	
+        Variables have fixed types
+    Dynamic Typing 🌀
+        Types are checked at runtime
+        Errors may appear while running
+        Variables can hold any type at any time
+
 Compound Data Structures
     │
     ├── Ordered (sequence-like)
@@ -38,6 +49,18 @@ Compound Data Structures
         ├── Queue / Stack (collections.deque in Python, Queue in Java, std::queue in C++)
         ├── Linked Lists (manual in C, LinkedList in Java, JS libraries)
         ├── Trees, Graphs, etc. (built manually or with libraries)
+
+    list
+        ":" ---> my_list[1:4] ---> (1,2,3)
+
+    Dictionary:
+        self.my_dict = {"a": 1, "b": 2} ---> overwrite the old values to new ones
+        self.my_dict: dict = dict() ---> overwrite old values to empty
+        self.my_dict: dict ---> without the objects, it only state the type
+        self.my_dict["new_key"] = "new_value" ---> update without overwritting
+        self.my_dict.update({"key", "value"}) ---> update without overwritting
+        self.my_dict: dict[str, int] = {"a": 1, "b": 2} ---> update without overwritting
+
 
 Object oriented programing morphosyntatics
     The objects:
