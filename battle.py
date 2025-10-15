@@ -98,7 +98,7 @@ def turn(character:Character,
                 clear()
                 continue
             elif str(choice) == '1':
-                target = player_target(enemies)
+                target = player_target(character, enemies)
                 character.action(target)
                 break
             elif str(choice) == "2":
@@ -120,31 +120,35 @@ def turn(character:Character,
     input()
 
 
-def player_target(enemies:Party):
-    if len(enemies.members) > 1:
+def player_target(self:Character, enemies:Party):
+    all_enemies = list()
+    print(len(self.shadows), 'shadows')
+    input()
+    if len(self.shadows) > 0:
+        all_enemies = enemies.members + self.shadows
+    else:
+        all_enemies = enemies.members.copy()
+    if len(all_enemies) > 1:
         while True:
             clear()
             line()
             print("Choose target: ")
-            for c in range(0, len(enemies.members)):
-                print(f"    >{c+1} {enemies.members[c].name}")
-            # if shadows == Party:
-            #     for s in range(c, len(shadows.members)):
-            #         print(f"    >{s+1} {shadows.members[s].name}")           
+            for c in range(0, len(all_enemies)):
+                print(f"    >{c+1} {all_enemies[c].name}")
             line()
             choice = str(input("> "))
             if str(choice).isnumeric() == False:
                 input("Invalid input.")
                 clear()
                 continue
-            if int(choice) > len(enemies.members) or int(choice) < 1:
+            elif int(choice) > len(all_enemies) or int(choice) < 1:
                 input("Invalid input.") 
                 clear()
                 continue
-            for c in range(0, len(enemies.members)):
+            for c in range(0, len(all_enemies)):
                 if int(choice)-1 == c:
                     clear()
-                    return enemies.members[int(choice)-1]
+                    return all_enemies[int(choice)-1]
             break
     elif len(enemies.members) == 1:
         return enemies.members[0]

@@ -55,10 +55,9 @@ while run: #main loop
         if current_loc == loonie.current_loc:
             player1.status.update({'bleed': 3})
             player1.status.update({'insanity': 9})
-            enemies = Party((loonie, haruki))
+            enemy_party = [loonie, haruki]
+            enemies = Party(enemy_party)
             Battle(My_party, enemies)
-        if current_loc == haruki.current_loc:
-            Battle(Party, haruki)
         clear()
         line()
         character_menu(player1)

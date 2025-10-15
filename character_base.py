@@ -35,11 +35,10 @@ class Character:
         god_blessing = int(self.spirit)^2
 #strenght stats
         hp_base = int(25)
-        physical_base = int(self.strenght)*2
         #weapon_power = int(1)
         self.max_hp = (int(self.strenght)*hp_base + god_blessing)*10
         self.hp = int(self.max_hp)
-        self.physical_damage = physical_base #* weapon_power
+        self.physical_damage = self.strenght*10
         if self.hp == 0:
             self.alive = bool(False)
 #mind stats
@@ -60,58 +59,65 @@ class Character:
         magic_base = int(self.intelect)*2
         spell_power = int()
         self.magical_damage = magic_base + spell_power
-        self.max_mana = (god_blessing + int(self.intelect))*mana_base
+        self.max_mana = (god_blessing + int(self.luck))*mana_base
         self.mana = int(self.max_mana)
 #status:
         self.status = {}
 #basic actions
     def basic_attack(self:'Character', target:'Character'):
-        self.physical_damage = int(self.strenght)*2
+        damage = int(self.physical_damage)
         crit_bonus = float(2 + (float(self.strenght/10)))
         evasion_chance = float(round(uniform(0,1),2))
         critical_chance = float(round(uniform(0,1),2))
         if float(evasion_chance) <= float(target.evasion):
-            self.physical_damage = self.physical_damage*0
+            damage *= 0
             print(f"{target.name} avoided the attack!")
             critical_chance = float(1)
         if float(critical_chance) <= float(self.critical):
             print(f"{self.name} gave critical damage!")
-            self.physical_damage = int(self.physical_damage*crit_bonus)
-        target.hp -= self.physical_damage
+            damage = int(self.physical_damage*crit_bonus)
+        target.hp -= damage
         target.hp = max(target.hp, 0)
+        print(f"{self.name} attacked {target.name} dealing {damage} damage")
     def magic_attack(self:'Character', target:'Character'):
+        damage = self.magical_damage*10
         self.mana -= 8
         self.mana = max(self.mana, 0)
-        target.hp -= self.magical_damage
+        target.hp -= damage
         target.hp = max(target.hp, 0)
+        print(f"{self.name} attacked {target.name} dealing {damage} magical damage")
     def action(self, target:'Character'):
         while True != 0:
             select = str(randint(1,2))
             if select == "1":
                 self.basic_attack(target)
-                print(f"{self.name} attacked {target.name} dealing {self.physical_damage} damage")
                 break
             elif select == "2" and self.mana < 8:
                 pass
             elif select == "2":
                 self.magic_attack(target)
-                print(f"{self.name} attacked {target.name} dealing {self.magical_damage} from magical damage")
                 print(f"Mana:[{self.max_mana}/{self.mana}]")
                 break
     def inner_mind(self):
         #Shadows appearence:
-        shadow = Character(f"{self.name}'s Shadow", 1,1,1,1,1,1,1)
+        shadow = Character(f"{self.name}'s Shadow", 1,1,1,1,1,1,1, 'Void')
         if self.sanity < int(float(self.max_sanity)*0.8):
             print(f"Shadows looming around {self.name}, but no one else seems to notice...")
             c = int(0)
-            for percentage in range(8,0):
+            for percentage in range(8,0,-1):
+                print(len(self.shadows), 'Shadows for', c, 'value')
+                input()
                 if int(self.sanity) < ((self.max_sanity)*(percentage/10)) and len(self.shadows) == c:
                     self.shadows.append(shadow)
+                    break
                 else:
                     c += len(self.shadows)
+            for j in range(0,len(self.shadows)):
+                if self.shadows[j].alive == False:
+                    self.shadows.pop(j)
+                    self.sanity += 10
+
         #Shadows action:
-            for i in (0,len(self.shadows)):
-                shadow.action(self)
-
-    
-
+        if self.sanity < int(float(self.max_sanity)*0.5):
+            for i in range(0,len(self.shadows)):
+                self.shadows[i].action(self)

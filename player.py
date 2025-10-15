@@ -17,12 +17,10 @@ class Player(Character):
         line()
         if select == "1":
             self.basic_attack(target)
-            print(f"{self.name} attacked {target.name} dealing {self.physical_damage} damage")
         elif select == "2" and self.mana < 8:
             print("You've run out of mana, you can't perform a magical attack")
         elif select == "2":
             self.magic_attack(target)
-            print(f"{self.name} attacked {target.name} dealing {self.magical_damage} from magical damage")
             print(f"Mana:[{self.max_mana}/{self.mana}]")
         else:
             print("Invalid input.")

@@ -1,8 +1,7 @@
-from player import Player
-from NPC import NPC
+from player import Player, Character
 
 class Party():
-    def __init__(self, members:list[NPC]):
+    def __init__(self, members:list[Character]):
         self.members = members
         self.alive = bool(True)
         self.deaths = int(0)
